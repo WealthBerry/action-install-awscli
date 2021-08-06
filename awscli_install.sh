@@ -9,6 +9,8 @@ then
 	exit 1;
 fi
 
+mkdir -p "$HOME/.aws/config"
+
 echo "[default]" > "$HOME/.aws/config"
 echo "region = $DEFAULT_REGION" >> "$HOME/.aws/config"
 chmod 600 "$HOME/.aws/config"
