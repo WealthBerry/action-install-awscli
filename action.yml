@@ -15,7 +15,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/awscli_install.sh
+    - run: ${{ github.action_path }}/awscli_install.sh ${{ inputs.region }} ${{ secrets.AWS_ACCESS_KEY_ID }} ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       shell: bash
     - run: aws ecr get-login-password --region ${{ inputs.region }} | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.${{ inputs.region }}.amazonaws.com
       shell: bash
