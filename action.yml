@@ -1,5 +1,5 @@
 name: 'AWS cli install'
-description: 'Installs AWS CLI & Authorize docker to ECS on Ubuntu 20.04'
+description: 'Sets up AWS CLI Credentials & Authorizes docker to ECS on Ubuntu 20.04'
 author: 'george.p@wealthberry.com'
 branding:
   icon: 'terminal'
@@ -21,7 +21,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/awscli_install.sh ${{ inputs.region }} ${{ inputs.aws_access_key_id }} ${{ inputs.aws_secret_access_key }}
+    - run: ${{ github.action_path }}/awscli_setup.sh ${{ inputs.region }} ${{ inputs.aws_access_key_id }} ${{ inputs.aws_secret_access_key }}
       shell: bash
     - run: aws ecr get-login-password --region ${{ inputs.region }} | docker login --username AWS --password-stdin ${{ inputs.aws_account_id }}.dkr.ecr.${{ inputs.region }}.amazonaws.com
       shell: bash
