@@ -5,9 +5,6 @@ branding:
   icon: 'terminal'
   color: 'gray-dark'
 inputs:
-  aws_account_id:
-    description: 'AWS Account ID'
-    required: true
   aws_access_key_id:
     description: 'AWS Account Access Key ID'
     required: true
@@ -22,6 +19,4 @@ runs:
   using: "composite"
   steps:
     - run: ${{ github.action_path }}/awscli_install.sh ${{ inputs.region }} ${{ inputs.aws_access_key_id }} ${{ inputs.aws_secret_access_key }}
-      shell: bash
-    - run: aws ecr get-login-password --region ${{ inputs.region }} | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.${{ inputs.region }}.amazonaws.com
       shell: bash
